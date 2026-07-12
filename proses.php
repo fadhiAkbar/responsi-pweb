@@ -2,6 +2,7 @@
 require_once __DIR__ . '/data.php';
 
 // Hanya terima method POST
+// jadi program ini hanya menerima file proses.php melalui post aja kalo selain itu akan langsung mengarahkan kembali ke index.php
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: index.php');
     exit;
