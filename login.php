@@ -7,6 +7,7 @@ const ADMIN_PASS = 'admin123';
 
 $error = '';
 
+// digunakan untuk mengakses halaman ini adalah
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username'] ?? '');
     $password = trim($_POST['password'] ?? '');

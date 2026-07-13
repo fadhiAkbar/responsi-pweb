@@ -10,6 +10,12 @@ if (empty($_SESSION['admin_logged_in'])) {
 $file = __DIR__ . '/transaksi.txt';
 $transaksiList = [];
 
+// program ini berfungsi untuk ngecek apakah file transaksi.txt ada, 
+// jika ada seluruh isi file dibaca. Setiap baris akan diproses satu persatu, 
+// kemudian dipisahkan berdasarkan karakter |.
+
+// explode adalah kebalikan nya implode, jika implode menggabungkan semua data array menjadi satu string, 
+// jadi explode kebalikan nya 
 if (file_exists($file)) {
     $lines = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($lines as $line) {

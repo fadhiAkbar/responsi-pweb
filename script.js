@@ -1,7 +1,3 @@
-// ============================================================
-// Validasi form pembelian — murni JavaScript native, tanpa alert()
-// ============================================================
-
 document.addEventListener("DOMContentLoaded", function () {
   const form       = document.getElementById("form-beli");
   const inputNama  = document.getElementById("nama_pemain");
@@ -39,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function validasiEmail() {
     const nilai = inputEmail.value.trim();
+    // pada const ini saya gunakan untuk menngecek apakah format sudah benar
     const polaEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (nilai === "") {
       tampilkanError(errEmail, inputEmail, "Email wajib diisi.");
@@ -89,7 +86,8 @@ document.addEventListener("DOMContentLoaded", function () {
     return true;
   }
 
-  // validasi realtime saat mengetik / memilih
+  // Kode ini memasang event listener pada setiap input form. Tujuannya agar setiap kali pengguna mengetik 
+  // atau mengubah pilihan, program langsung melakukan validasi tanpa harus menunggu tombol submit ditekan.
   inputNama.addEventListener("input", validasiNama);
   inputEmail.addEventListener("input", validasiEmail);
   selectNinja.addEventListener("change", function () {
@@ -98,13 +96,14 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   inputKoin.addEventListener("input", validasiKoin);
 
-  // validasi final saat submit
+  // Melakukan validasi semua input sebelum form dikirim. Jika ada satu saja yang tidak valid, maka pengiriman form dibatalkan.
   form.addEventListener("submit", function (event) {
     const namaValid  = validasiNama();
     const emailValid = validasiEmail();
     const ninjaValid = validasiNinja();
     const koinValid  = validasiKoin();
 
+    // kalo salah satu data nya da yg tidak valid maka tidak akan diijin kan untuk kirim
     if (!(namaValid && emailValid && ninjaValid && koinValid)) {
       event.preventDefault();
     }

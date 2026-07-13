@@ -13,7 +13,7 @@ $email      = trim($_POST['email'] ?? '');
 $ninjaId    = trim($_POST['ninja_pilihan'] ?? '');
 $jumlahKoin = trim($_POST['jumlah_koin'] ?? '');
 
-// Bersihkan format ribuan seperti "500.000" -> "500000"
+// kode ini berfungsi untuk menghapus format ribuan seperti "500.000" menjadi "500000"
 $jumlahKoinBersih = preg_replace('/[.,\s]/', '', $jumlahKoin);
 
 $ninja = getNinjaById($ninjaId);
@@ -36,6 +36,7 @@ if ($ninja === null) {
 }
 
 // 4. Jumlah koin harus angka dan minimal sesuai harga ninja
+// ctype_digit() untuk ngecek apakah koin nya itu berupa angka, jika bukan error
 if (!ctype_digit($jumlahKoinBersih)) {
     $valid = false;
 } elseif ($ninja !== null && (int) $jumlahKoinBersih < (int) $ninja['harga']) {
@@ -61,6 +62,9 @@ $baris = implode('|', [
 ]) . PHP_EOL;
 
 $file = __DIR__ . '/transaksi.txt';
+// fungsi file_append ini untuk menambahkan data bagian akhir file, kalo gk ada data sebelum nya akan hilang
+// fungsi lock_ex ini berfungsi untuk mengunci file sementara selama proses penulisan kalo gk ada bisa saja isi 
+// file menjadi rusak karena dua proses menulis bersamaan.
 file_put_contents($file, $baris, FILE_APPEND | LOCK_EX);
 
 header('Location: index.php?status=sukses');

@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/data.php';
-$ninjas = getNinjas();
+$ninjas = getNinja  s();
 
 // status kiriman dari proses.php (via redirect ?status=sukses)
 $status = $_GET['status'] ?? null;

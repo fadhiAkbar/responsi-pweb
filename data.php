@@ -41,6 +41,10 @@ function getNinjas() {
     ];
 }
 
+// fungsi ini untuk melakukan pengecekan terhadap id yg diberikan, 
+// jadi fungsi ini akan mengecek id dari masing masing ninja jika 
+// ditemukan id yg sesuai maka fungsi akan langsung mengembalikan data ninja tersebut. 
+// jika setelah semua data diperiksa tidak ada yang cocok maka fungsi akan mengembalikan nilai null.
 function getNinjaById($id) {
     foreach (getNinjas() as $n) {
         if ($n['id'] === $id) return $n;
