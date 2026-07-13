@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return true;
   }
 
-  // Kode ini memasang event listener pada setiap input form. Tujuannya agar setiap kali pengguna mengetik 
+  // Kode ini memasang event listener pada setiap input form. Tujuannya agar setiap pengguna mengetik 
   // atau mengubah pilihan, program langsung melakukan validasi tanpa harus menunggu tombol submit ditekan.
   inputNama.addEventListener("input", validasiNama);
   inputEmail.addEventListener("input", validasiEmail);
